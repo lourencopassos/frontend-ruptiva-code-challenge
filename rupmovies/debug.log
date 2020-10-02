@@ -1,0 +1,2 @@
+[1001/115210.705:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: O comprimento do registro de informações especificado não coincide com o comprimento necessário à classe de informações especificada. (0xc0000004)
+[1001/183638.233:ERROR:process_info.cc(359)] UncheckedAllocate
