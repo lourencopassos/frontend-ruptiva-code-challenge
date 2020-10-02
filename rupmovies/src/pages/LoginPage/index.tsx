@@ -14,7 +14,7 @@ const LoginPage: React.FC = (): JSX.Element => {
 
   const handleLogin = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
-    console.log(form);
+    history.replace('/home');
     // if (response.token) {
     //   localStorage.setItem('token', response.token);
     //   history.replace('/dashboard');
@@ -28,7 +28,7 @@ const LoginPage: React.FC = (): JSX.Element => {
     <Container>
       <FormContainer>
         <div>
-          <img src={logo} />
+          <img src={logo} alt="Rup Movies Logo" />
         </div>
         <form onSubmit={handleLogin}>
           <label>Email</label>
@@ -50,7 +50,9 @@ const LoginPage: React.FC = (): JSX.Element => {
             required
           />
           <div>
-            <p>Caso você não tenha uma conta, clique aqui.</p>
+            <p>
+              Caso você não tenha uma conta, clique <Link to="./">aqui</Link>.
+            </p>
           </div>
           <button type="submit">Acessar</button>
         </form>

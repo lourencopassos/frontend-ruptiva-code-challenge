@@ -33,7 +33,7 @@ export const FormContainer = styled.div`
 
   img {
     width: 30%;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 
   label {
