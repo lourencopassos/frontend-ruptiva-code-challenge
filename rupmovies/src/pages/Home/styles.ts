@@ -14,6 +14,16 @@ export const Container = styled.div`
   }
 `;
 
+export const MovieContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  div {
+    padding: 0 16px;
+  }
+`;
+
 export const LoadingContainer = styled.div`
   height: 100%;
   width: 100%;

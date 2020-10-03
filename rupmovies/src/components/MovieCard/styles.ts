@@ -13,6 +13,7 @@ export const MovieContainer = styled.div`
   align-items: center;
   transition: 0.3s;
   font-size: 16px;
+  cursor: pointer;
 
   img {
     border-radius: 8px;
@@ -23,14 +24,15 @@ export const MovieContainer = styled.div`
 export const MovieTitle = styled.p`
   font-weight: bold;
   font-size: 18px;
-  margin: 0;
+  margin: 16px 0 0 0;
 `;
 
 export const MovieInfo = styled.div`
-  padding-top: 8px;
+  display: flex;
+  justify-content: center;
   height: 20%;
   width: 100%;
   p {
-    margin: 0;
+    padding: 0 8px;
   }
 `;
