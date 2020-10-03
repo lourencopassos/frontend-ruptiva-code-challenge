@@ -1,20 +1,31 @@
 import React from 'react';
 import { MovieContainer, MovieTitle, MovieInfo } from './styles';
-import { useEffect, useState } from 'react';
-import { Movie } from '../../pages/Home';
+import MovieDetailModal from '../../components/MovieDetailModal';
 
-const MovieCard: React.FunctionComponent<Movie> = (props): JSX.Element => {
+const MovieCard: React.FunctionComponent<any> = (props): JSX.Element => {
+  const movie = props.movie;
+  const id = props.id
+
+
   return (
-    <MovieContainer>
-      <img src={props.poster} alt={props.title} />
-      <div>
-        <MovieTitle>{props.title}</MovieTitle>
-        <MovieInfo>
-          <p> ★ {props.imdb_score}</p>
-          <p>{props.genre}</p>
-        </MovieInfo>
-      </div>
-    </MovieContainer>
+    <div>
+      <MovieContainer onClick={props.onClick}>
+        <img src={props.poster} alt={props.title} />
+        <div>
+          <MovieTitle>{props.title}</MovieTitle>
+          <MovieInfo>
+            <p> ★ {props.imdb_score}</p>
+            <p>{props.genre}</p>
+          </MovieInfo>
+        </div>
+      </MovieContainer>
+      <MovieDetailModal
+        visible={props.visible}
+        id={id}
+        onCancel={props.onCancel}
+        movie={movie}
+      />
+    </div>
   );
 };
 
