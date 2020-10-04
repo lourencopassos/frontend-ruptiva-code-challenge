@@ -15,14 +15,14 @@ import { Link, useHistory } from 'react-router-dom';
 
 const App: React.FunctionComponent<any> = (props) => {
   const [loading, setLoading] = useState<boolean>(true);
+  const [token, setToken] = useState<string | null>('');
+
   const movie = props.movie;
 
   const history = useHistory();
 
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmM2M3OTkxLTc2YmEtNDY5MS04YTFiLWM0OTc4YmEyZWRhYiIsImlhdCI6MTYwMTY1MjEzOCwiZXhwIjoxNjAxNjU3NTM4fQ.ap0HxiiZwBzrMQxQQXLXmZu-vddqf0GKSwBoZUhR4sg';
-
   useEffect(() => {
+    setToken(localStorage.getItem('token'));
     if (movie) {
       setLoading(false);
     } else {
@@ -33,6 +33,7 @@ const App: React.FunctionComponent<any> = (props) => {
   const deleteMovieFromApp = async (id: string) => {
     await deleteMovie(token as AxiosRequestConfig, id);
     setLoading(true);
+    window.location.reload(false);
     history.replace('./home');
   };
 

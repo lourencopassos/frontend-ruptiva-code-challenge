@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HeaderContainer } from './styles';
 import logo from '../../images/netflix.png';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Header: React.FunctionComponent = (): JSX.Element => {
   const history = useHistory();
@@ -11,7 +11,9 @@ const Header: React.FunctionComponent = (): JSX.Element => {
   };
   return (
     <HeaderContainer>
-      <img src={logo} alt="Rupmovies Logo" />
+      <Link to="./home">
+        <img src={logo} alt="Rupmovies Logo" />
+      </Link>
       <button onClick={goToAddMoviePage}> Adicionar </button>
     </HeaderContainer>
   );

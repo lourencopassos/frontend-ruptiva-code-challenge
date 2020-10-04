@@ -6,6 +6,7 @@ import Loader from 'react-loader-spinner';
 import MovieCard from '../../components/MovieCard';
 import { getMovies, getMovieDetail } from '../../utils/api';
 import { AxiosRequestConfig } from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export interface Movie {
   [index: string]: string;
@@ -16,9 +17,9 @@ const Home: React.FunctionComponent = (): JSX.Element => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
   const [movieDetail, setMovieDetail] = useState<Movie | undefined>(undefined);
+  const [token, setToken] = useState<string | null>('');
 
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmM2M3OTkxLTc2YmEtNDY5MS04YTFiLWM0OTc4YmEyZWRhYiIsImlhdCI6MTYwMTY1MjEzOCwiZXhwIjoxNjAxNjU3NTM4fQ.ap0HxiiZwBzrMQxQQXLXmZu-vddqf0GKSwBoZUhR4sg';
+  const history = useHistory();
 
   const fetchMovies = async (token: AxiosRequestConfig) => {
     const result = await getMovies(token);
@@ -32,8 +33,13 @@ const Home: React.FunctionComponent = (): JSX.Element => {
   };
 
   useEffect(() => {
+    setToken(localStorage.getItem('token'));
     fetchMovies(token as AxiosRequestConfig);
-  }, [movies]);
+    if (token === null) {
+      alert('Login necessário!');
+      history.push('/');
+    }
+  }, [token, movies, history]);
 
   const render = loading ? (
     <LoadingContainer>

@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow-x: hidden;
 
   @media (max-width: 800px) {
     /* flex-direction: column;
@@ -18,6 +19,7 @@ export const MovieContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 8px 32px;
 
   div {
     padding: 0 16px;
