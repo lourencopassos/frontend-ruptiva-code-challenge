@@ -3,6 +3,7 @@ import { Container, FormContainer } from './styles';
 import { useForm } from '../../hooks/useForm';
 import logo from '../../images/netflix.png';
 import { useHistory, Link } from 'react-router-dom';
+import { login } from '../../utils/api';
 
 const LoginPage: React.FC = (): JSX.Element => {
   const [form, handleFormChange, resetForm] = useForm({
@@ -14,14 +15,15 @@ const LoginPage: React.FC = (): JSX.Element => {
 
   const handleLogin = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
-    history.replace('/home');
-    // if (response.token) {
-    //   localStorage.setItem('token', response.token);
-    //   history.replace('/dashboard');
-    //   resetForm();
-    // } else {
-    //   window.alert(response.message);
-    // }
+    const response = await login(form);
+    if (response) {
+      localStorage.setItem('token', response.token);
+      resetForm();
+      history.replace('/home');
+    } else {
+      alert('Erro ao realizar login, confira os dados');
+      resetForm();
+    }
   };
 
   return (
@@ -45,13 +47,14 @@ const LoginPage: React.FC = (): JSX.Element => {
             placeholder="Senha"
             type="password"
             name="password"
-            // value={form.email}
-            // onChange={handleFormChange}
+            value={form.password}
+            onChange={handleFormChange}
             required
           />
           <div>
             <p>
-              Caso você não tenha uma conta, clique <Link to="./">aqui</Link>.
+              Caso você não tenha uma conta, clique{' '}
+              <Link to="./signup">aqui</Link>.
             </p>
           </div>
           <button type="submit">Acessar</button>
